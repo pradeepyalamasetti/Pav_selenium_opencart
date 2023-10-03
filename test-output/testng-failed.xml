@@ -7,13 +7,13 @@
   <test thread-count="5" name="ChromeTest(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="testCases.TC_003_LoginDataDrivenTest">
+      <class name="testCases.TC_006_EndToEndTest">
         <methods>
           <include name="tearDown"/>
+          <include name="endToendTest"/>
           <include name="setup"/>
-          <include name="test_LoginDDT" invocation-numbers="1 2"/>
         </methods>
-      </class> <!-- testCases.TC_003_LoginDataDrivenTest -->
+      </class> <!-- testCases.TC_006_EndToEndTest -->
     </classes>
   </test> <!-- ChromeTest(failed) -->
 </suite> <!-- Failed suite [Suite] -->

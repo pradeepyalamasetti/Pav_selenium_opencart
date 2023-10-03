@@ -261,3 +261,9 @@
 17:18:24.062 [main] INFO  testCases.TC_002_LoginTest - Providing login details
 17:18:24.797 [main] INFO  testCases.TC_002_LoginTest - Clicked on Login button
 17:18:24.857 [main] INFO  testCases.TC_002_LoginTest - ***Finished TC_002_LoginTest***
+18:44:51.923 [main] INFO  testCases.TC_004_SearchProductTest -  Starting TC_004_SearchProductTest 
+18:44:53.027 [main] INFO  testCases.TC_004_SearchProductTest -  Finished TC_004_SearchProductTest 
+18:45:39.849 [main] INFO  testCases.TC_004_SearchProductTest -  Starting TC_004_SearchProductTest 
+18:45:40.601 [main] INFO  testCases.TC_004_SearchProductTest -  Finished TC_004_SearchProductTest 
+18:47:31.008 [main] INFO  testCases.TC_005_AddToCartPageTest -  Starting TC_005_AddToCartPageTest 
+18:47:32.778 [main] INFO  testCases.TC_005_AddToCartPageTest -  Finished TC_004_SearchProductTest 

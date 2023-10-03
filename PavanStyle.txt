@@ -2166,3 +2166,659 @@ open the Jenkins --- New item ------- Project name given(CucumberProject_local )
 ------ok ---- ---- go build -----Root POM
 --- paste the local path of pom xml (C:\Users\win\eclipse-workspace\pavan_project\pom.xml)
 ---test ---- Apply and save ------Go to Dashborad --- open the project --- Build Now
+
+
+
+
+
+TC_004_SearchProductTest
+==============================================================
+HomePage.java
+---------------------------
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+public class HomePage extends BasePage {
+
+	public HomePage(WebDriver driver) {
+		super(driver);
+	}
+
+	// Elements
+	@FindBy(xpath = "//span[text()='My Account']")
+	WebElement lnkMyaccount;
+
+	@FindBy(linkText = "Register")
+	WebElement lnkRegister;
+
+	@FindBy(linkText = "Login")   // Login page Locator added 
+	WebElement linkLogin;
+	
+	
+	@FindBy(xpath="//input[@placeholder='Search']")  //For Search Product Test
+	WebElement txtSearchbox;
+	
+@FindBy(xpath="//div[@id='search']//button[@type='button']") //For Search Product Test
+WebElement btnSearch;
+	
+	// Action Methods
+	public void clickMyAccount() {
+		lnkMyaccount.click();
+	}
+
+	public void clickRegister() {
+		lnkRegister.click();
+	}
+	
+	public void clickLogin()    // Login page method added 
+	{
+		linkLogin.click();
+	}
+	
+	public void enterProductName(String pName)   //For Search Product Test
+	{
+		txtSearchbox.sendKeys(pName);
+	}
+	
+	public void clickSearch()  //For Search Product Test
+	{
+		btnSearch.click();
+	}
+	
+}
+--------------------------------------------------------------------------------------
+	
+package testCases;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import pageObjects.HomePage;
+import pageObjects.SearchPage;
+import testBase.BaseClass;
+
+@Test
+public class TC_004_SearchProductTest extends BaseClass {
+
+	public void test_pruductSearch() throws InterruptedException {
+		logger.info(" Starting TC_004_SearchProductTest ");
+
+		try {
+			
+			HomePage hm=new HomePage(driver);
+			
+			//hm.enterProductName("iPhone");
+			hm.enterProductName("mac");
+			
+			hm.clickSearch();
+			
+			SearchPage sp=new SearchPage(driver);
+			sp.isProductExist("MacBook");
+
+			Assert.assertEquals(sp.isProductExist("MacBook"),true);
+
+		} catch (Exception e) {
+			Assert.fail();
+		}
+
+		logger.info(" Finished TC_004_SearchProductTest ");
+
+	}
+}
+
+----------------------------------------------------------
+package pageObjects;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class SearchPage extends BasePage
+{   
+	WebDriver driver;
+	
+	public SearchPage(WebDriver driver)
+	{
+		super(driver);
+	}	
+	
+		@FindBy(xpath="//*[@id='content']/div[3]//img")
+		List<WebElement> searchProducts;
+				
+		@FindBy(xpath="//input[@id='input-quantity']")
+		WebElement txtquantity;
+		
+		@FindBy(xpath="//button[@id='button-cart']")
+		WebElement btnaddToCart;
+		
+		@FindBy(xpath="//div[contains(text(),'Success: You have added')]")
+		WebElement cnfMsg;
+		
+		public boolean isProductExist(String productName)
+		{
+			boolean flag=false;
+			for(WebElement product:searchProducts)
+			{				
+				if(product.getAttribute("title").equals(productName))
+				{
+				flag=true;
+				break;
+				}
+			}
+			
+			return flag;
+		
+		}
+		
+		public void selectProduct(String productName)
+		{
+			for(WebElement product:searchProducts)
+			{				
+				if(product.getAttribute("title").equals(productName))
+				{
+					product.click();
+				}
+			}
+		
+		}
+		
+		public void setQuantity(String qty)
+		{
+			txtquantity.clear();
+			txtquantity.sendKeys(qty);
+		}
+		
+		public void addToCart()
+		{
+			btnaddToCart.click();
+		}
+		
+		public boolean checkConfMsg()
+		{
+			try
+			{
+			return cnfMsg.isDisplayed();
+			}
+			catch(Exception e)
+			{
+				return false;
+			}
+		}
+		
+}
+-----------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	
+	 <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+	</listeners>
+	
+	
+  <test thread-count="5" name="ChromeTest">
+	  
+	   <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	   
+    <classes>
+    <!--    <class name="testCases.TC_001_AccountRegistrationTest"/>
+      <class name="testCases.TC_002_LoginTest"/>
+     <class name="testCases.TC_003_LoginDataDrivenTest"/>-->
+   <class name="testCases.TC_004_SearchProductTest"/>
+
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+
+
+TC_005_AddToCartPageTest
+==============================================================
+
+Everything is Done before TC_004_SearchProductTest must implement method in TC_005_AddToCartPageTest and Run
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	
+	 <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+	</listeners>
+	
+	
+  <test thread-count="5" name="ChromeTest">
+	  
+	   <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	   
+    <classes>
+    <!--    <class name="testCases.TC_001_AccountRegistrationTest"/>
+      <class name="testCases.TC_002_LoginTest"/>
+     <class name="testCases.TC_003_LoginDataDrivenTest"/>
+   <class name="testCases.TC_004_SearchProductTest"/>-->
+   <class name="testCases.TC_005_AddToCartPageTest"/>
+  
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+
+TC_006_EndToEndTest
+==============================================================
+/**
+ * 
+ */
+package testCases;
+
+import org.testng.annotations.Test;
+
+import org.testng.asserts.SoftAssert;
+
+import pageObjects.AccountRegistrationPage;
+import pageObjects.CheckoutPage;
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
+import pageObjects.MyAccountPage;
+import pageObjects.SearchPage;
+import pageObjects.ShoppingCartPage;
+import testBase.BaseClass;
+
+public class TC_006_EndToEndTest extends BaseClass {
+	
+	@Test
+	public void endToendTest() throws InterruptedException
+	{
+	//Soft assertions
+		SoftAssert myassert=new SoftAssert();
+		
+		
+	//Account Registration
+	HomePage hp = new HomePage(driver);
+	hp.clickMyAccount();
+	hp.clickRegister();
+	
+	AccountRegistrationPage regpage = new AccountRegistrationPage(driver);
+	regpage.setFirstName(randomeString().toUpperCase());
+	regpage.setLastName(randomeString().toUpperCase());
+	
+	String email=randomeString() + "@gmail.com";
+	regpage.setEmail(email);// randomly generated the email
+			
+	regpage.setTelephone("1234567");
+	
+	regpage.setPassword("test123");
+	regpage.setConfirmPassword("test123");
+	regpage.setPrivacyPolicy();
+	regpage.clickContinue();
+	Thread.sleep(3000);
+
+	String confmsg = regpage.getConfirmationMsg();
+	System.out.println(confmsg);
+	
+	myassert.assertEquals(confmsg, "Your Account Has Been Created!"); //validation
+	
+	MyAccountPage mc=new MyAccountPage(driver);
+	mc.clickLogout();
+	Thread.sleep(3000);
+	
+	
+	//Login
+	hp.clickMyAccount();
+	hp.clickLogin();
+	
+	LoginPage lp=new LoginPage(driver);
+	lp.setEmail(email);
+	lp.setPassword("test123");
+	lp.clickLogin();
+		
+	
+	System.out.println("Going to My Account Page? "+ mc.isMyAccountPageExists());
+	myassert.assertEquals(mc.isMyAccountPageExists(), true); //validation
+
+	
+	//search & add product to cart
+	hp.enterProductName("iPhone");
+	hp.clickSearch();
+	
+	SearchPage sp=new SearchPage(driver);
+	
+	if(sp.isProductExist("iPhone"))
+	{
+		sp.selectProduct("iPhone");
+		sp.setQuantity("2");
+		sp.addToCart();
+		
+	}
+	Thread.sleep(3000);
+	System.out.println("Added product to cart ? "+ sp.checkConfMsg());
+	myassert.assertEquals(sp.checkConfMsg(),true);
+		
+		
+	//Shopping cart
+	ShoppingCartPage sc=new ShoppingCartPage(driver);
+	sc.clickItemsToNavigateToCart();
+	sc.clickViewCart();
+	Thread.sleep(3000);
+	String totprice=sc.getTotalPrice();
+	System.out.println("total price is shopping cart: "+totprice);
+	myassert.assertEquals(totprice, "$246.40");   //validation
+	sc.clickOnCheckout(); //navigate to checkout page
+	Thread.sleep(3000);
+	
+	
+	//Checkout Product
+	CheckoutPage ch=new CheckoutPage(driver);
+	
+	ch.setfirstName(randomeString().toUpperCase());
+	Thread.sleep(1000);
+	ch.setlastName(randomeString().toUpperCase());
+	Thread.sleep(1000);
+	ch.setaddress1("address1");
+	Thread.sleep(1000);
+	ch.setaddress2("address2");
+	Thread.sleep(1000);
+	ch.setcity("Delhi");
+	Thread.sleep(1000);
+	ch.setpin("500070");
+	Thread.sleep(1000);
+	ch.setCountry("India");
+	Thread.sleep(1000);
+	ch.setState("Delhi");
+	Thread.sleep(1000);
+	ch.clickOnContinueAfterBillingAddress();
+	Thread.sleep(1000);
+	ch.clickOnContinueAfterDeliveryAddress();
+	Thread.sleep(1000);
+	ch.setDeliveryMethodComment("testing...");
+	Thread.sleep(1000);
+	ch.clickOnContinueAfterDeliveryMethod();
+	Thread.sleep(1000);
+	ch.selectTermsAndConditions();
+	Thread.sleep(1000);
+	ch.clickOnContinueAfterPaymentMethod();
+	Thread.sleep(2000);
+	
+	String total_price_inOrderPage=ch.getTotalPriceBeforeConfOrder();
+	System.out.println("total price in confirmed order page:"+total_price_inOrderPage);
+	myassert.assertEquals(total_price_inOrderPage, "$207.00"); //validation
+	
+	//Below code works ony if you configure SMTP for emails 
+	/*ch.clickOnConfirmOrder();
+	Thread.sleep(3000);
+		
+	boolean orderconf=ch.isOrderPlaced();
+	System.out.println("Is Order Placed? "+orderconf);
+	myassert.assertEquals(ch.isOrderPlaced(),true);*/
+		
+	myassert.assertAll(); //conclusion
+}
+
+}
+
+pageObjects ------- CheckoutPage.java
+-----------------------------------------
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
+public class CheckoutPage extends BasePage{
+
+	
+	public CheckoutPage(WebDriver driver)
+	{
+		super(driver);
+	}	
+	
+	@FindBy(xpath="//input[@id='input-payment-firstname']")
+	WebElement txtfirstName;
+	
+	@FindBy(xpath="//input[@id='input-payment-lastname']")
+	WebElement txtlastName;
+	
+
+	@FindBy(xpath="//input[@id='input-payment-address-1']")
+	WebElement txtaddress1;
+	
+	@FindBy(xpath="//input[@id='input-payment-address-2']")
+	WebElement txtaddress2;
+	
+	
+	@FindBy(xpath="//input[@id='input-payment-city']")
+	WebElement txtcity;
+	
+	
+	@FindBy(xpath="//input[@id='input-payment-postcode']")
+	WebElement txtpin;
+	
+	
+	@FindBy(xpath="//select[@id='input-payment-country']")
+	WebElement drpCountry;
+	
+	
+	@FindBy(xpath="//select[@id='input-payment-zone']")
+	WebElement drpState;
+
+	@FindBy(xpath="//input[@id='button-payment-address']")
+	WebElement btncontinueBillingAddress;
+	
+	@FindBy(xpath="//input[@id='button-shipping-address']")
+	WebElement btncontinueDeliveryAddress;
+	
+	@FindBy(xpath="//textarea[@name='comment']")
+	WebElement txtDeliveryMethod;
+	
+	@FindBy(xpath="//input[@id='button-shipping-method']")
+	WebElement btncontinueShippingAddress;
+	
+	
+	@FindBy(xpath="//input[@name='agree']")
+	WebElement chkboxTerms;
+	
+	
+	@FindBy(xpath="//input[@id='button-payment-method']")
+	WebElement btncontinuePaymentMethod;
+	
+	
+	@FindBy(xpath="//strong[text()='Total:']//following::td")
+	WebElement lblTotalPrice;
+	
+	
+	@FindBy(xpath="//input[@id='button-confirm']")
+	WebElement btnConfOrder;
+	
+	
+	@FindBy(xpath="//*[@id='content']/h1")
+	WebElement lblOrderConMsg;
+	
+	
+
+	public void setfirstName(String firstName) {
+		txtfirstName.sendKeys(firstName);
+	}
+
+
+	public void setlastName(String lastName) {
+		txtlastName.sendKeys(lastName);
+	}
+
+
+	public void setaddress1(String address1) {
+		txtaddress1.sendKeys(address1);
+	}
+
+
+	public void setaddress2(String address2) {
+		txtaddress2.sendKeys(address2);
+	}
+
+
+	public void setcity(String city) {
+		txtcity.sendKeys(city);
+	}
+
+
+	public void setpin(String pin) {
+		txtpin.sendKeys(pin);
+	}
+
+
+	public void setCountry(String Country) {
+		new Select(drpCountry).selectByVisibleText(Country);
+	}
+
+
+	public void setState(String State) {
+		new Select(drpState).selectByVisibleText(State);
+	}
+	
+	public void clickOnContinueAfterBillingAddress()
+	{
+		btncontinueBillingAddress.click();
+	}
+	
+	public void clickOnContinueAfterDeliveryAddress()
+	{
+		btncontinueDeliveryAddress.click();
+	}
+	
+	
+	public void setDeliveryMethodComment(String deliverymsg)
+	{
+		txtDeliveryMethod.sendKeys(deliverymsg);
+		
+	}
+	
+	public void clickOnContinueAfterDeliveryMethod()
+	{
+		btncontinueShippingAddress.click();
+	}
+	
+	public void selectTermsAndConditions()
+	{
+		chkboxTerms.click();
+	}
+	
+	public void clickOnContinueAfterPaymentMethod()
+	{
+		btncontinuePaymentMethod.click();
+	}
+	
+	public String  getTotalPriceBeforeConfOrder()
+	{
+		return lblTotalPrice.getText(); //$207.00
+		
+	}
+	
+	public void clickOnConfirmOrder() {
+		btnConfOrder.click();
+	}
+	
+	public boolean isOrderPlaced() throws InterruptedException
+	{
+		try
+		{
+		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+		btnConfOrder.click();
+		Thread.sleep(3000);
+		if(lblOrderConMsg.getText().equals("Your order has been placed!"))
+			return true;
+		else
+			return false;
+		}catch(Exception e)
+		{
+			return false;
+		}
+		
+	}
+	
+}
+
+pageObjects ------- ShoppingCartPage.java
+-----------------------------------------
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class ShoppingCartPage extends BasePage
+	{
+	public ShoppingCartPage(WebDriver driver)
+	{
+		super(driver);
+	}
+	
+	//@FindBy(xpath="//button[@aria-expanded='false']")
+	@FindBy(xpath="//div[@id='cart']")
+	WebElement btnItems;
+	
+	@FindBy(xpath="//strong[normalize-space()='View Cart']")
+	WebElement lnkViewCart;
+	
+	@FindBy(xpath="//*[@id='content']/div[2]/div/table//strong[text()='Total:']//following::td")
+	WebElement lblTotalPrice;  //$246.40
+	
+	@FindBy(xpath="//a[text()='Checkout']")
+	WebElement btnCheckout;
+	
+	public void clickItemsToNavigateToCart()
+	{
+		btnItems.click();
+	}
+	
+	public void clickViewCart()
+	{
+		lnkViewCart.click();
+	}
+	
+	public String getTotalPrice()
+	{
+		return lblTotalPrice.getText();
+	}
+	
+	public void clickOnCheckout()
+	{
+		btnCheckout.click();
+	}
+}
+
+
+testng.xml
+----------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	
+	 <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+	</listeners>
+	
+	
+  <test thread-count="5" name="ChromeTest">
+	  
+	   <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	   
+    <classes>
+    <!--    <class name="testCases.TC_001_AccountRegistrationTest"/>
+      <class name="testCases.TC_002_LoginTest"/>
+     <class name="testCases.TC_003_LoginDataDrivenTest"/>
+   <class name="testCases.TC_004_SearchProductTest"/>
+   <class name="testCases.TC_005_AddToCartPageTest"/>-->
+   <class name="testCases.TC_006_EndToEndTest"/>
+   
+   
+
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+

@@ -74,7 +74,7 @@ public class BaseClass {
 	@AfterClass(groups = { "Master", "Sanity", "Regression" }) //Step8 groups added
 	public void tearDown()
 	{
-		driver.quit();
+		//driver.quit();
 	}
 	
 	public String randomeString() {
