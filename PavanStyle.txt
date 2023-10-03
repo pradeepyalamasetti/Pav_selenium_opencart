@@ -2046,19 +2046,45 @@ Data drvien dataDriventests.xml file---one data driven test is there but future 
 </suite> <!-- OpenCartSuite -->
 
 
-step 15 : Only failed test cases see ----test-output-------testng-failed.xml
-=============================================================================
+
+
+
+step 15 : Run with failure tests
+======================
+Only failed test cases -- see 
 1.Run Failed Tests.
-test-output→testng-failed.xml
+test-output  -------   testng-failed.xml
 
 
+
+
+step 16 : Run with pom.xml test
+=====================
+Go to Pom.xml file (in plugins remove configuation tag)----- then save --- right click in pom.xml file
+ ---- Run As ----- Maven test
+
+BUILD SUCCESS  in POM.XML file
+
+
+
+
+step 17 : Run with commandpropmt  test
+============================
+Open the cmdprt ---- check mvn -version ----- project folder ---- right click ---properties ---- 
+copy the path(C:\Users\win\eclipse-workspace\CucumberProject)  ----- cd copy the path -----then mvn test
 step 16 :Setup maven.apache.org
+
+
+
+step 18 : push the code in remote github
 =====================================================================================================
 Install git Local ------ git -v --------------------------- (cmd check)
 Create Github account  ------------(username and pswd)
 
 
-Open the git bash ---- local system following below commands
+First go to this location ----C:\Users\win\eclipse-workspace\pavan_project
+After Open the git bash ---- local system following below commands
+
 
                    1st round
 --------------------------------------------------------------
@@ -2098,11 +2124,17 @@ how to add file in github repository
 
 
 
+
+
 step  17 :Setup maven.apache.org
 =====================================================================================================
 https://maven.apache.org/ ------- Downloads --------- zip file for windows ----- C:\software\apache-maven-3.9.4
 This PC ------ properties properties ---- Advance system settings --- environment variables -----
 MAVEN_HOME ----C:\software\apache-maven-3.9.4 ---- ok ------ path file ---- Edit ---- paste(%MAVEN_HOME%\bin)----ok
+	
+	
+	
+	
 	
 step  : jenkins using command prompt 
 =====================================================================================================
@@ -2119,3 +2151,18 @@ step  : jenkins using command prompt
 	                       ----- add MAVEN path name(MAVEN_HOME) MAVEN_HOME(C:\software\apache-maven-3.9.4)
 Apply and Save.
 
+
+
+Run with Remote repository
+==========================
+open the Jenkins --- New item ------- Project name given(CucumberProject_github )---- select Maven project 
+------ok
+---- select git --- paste github url(https://github.com/pradeepyalamasetti/Pav_selenium_opencart.git) 
+---- go build given ---test ---- Apply and save ------Go to Dashborad --- open the project --- Build Now
+
+Run with Local repository
+=========================
+open the Jenkins --- New item ------- Project name given(CucumberProject_local )---- select Maven project 
+------ok ---- ---- go build -----Root POM
+--- paste the local path of pom xml (C:\Users\win\eclipse-workspace\pavan_project\pom.xml)
+---test ---- Apply and save ------Go to Dashborad --- open the project --- Build Now

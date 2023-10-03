@@ -33,6 +33,7 @@ public class BaseClass {
 	public ResourceBundle rb;// to read config.properties
 
 	@BeforeClass(groups = { "Master", "Sanity", "Regression" }) //Step8 groups added
+	
 	@Parameters("browser")   // getting browser parameter from testng.xml
 	public void setup(String browse)
 	{
