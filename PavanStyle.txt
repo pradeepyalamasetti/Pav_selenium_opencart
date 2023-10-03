@@ -1,0 +1,2121 @@
+step 1: Create Maven Project 
+====================================================================================
+1) Create Maven project in Eclipse
+	File--> Other--> Maven project.(or)
+	Right Click ---- New ---- Project -- Maven ---- Maven project ---- 
+	create simple project --- Project id name (two times) --- finish
+	
+step 2: Update POM.xml file required dependencies and plugins
+====================================================================================
+<build>
+		<pluginManagement>
+			<plugins>
+				
+				<!-- 1 -->
+				<plugin>
+
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.11.0</version>
+					<configuration>
+						<!-- put your configurations here -->
+					</configuration>
+
+				<!-- 2 -->
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.1.2</version>
+
+					<!-- <configuration>
+	        <suiteXmlFiles>
+			<suiteXmlFile> mastertestng.xml</suiteXmlFile>
+		</suiteXmlFiles>
+	</configuration>-->
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+	<dependencies>
+		
+		<!-- 1 -->
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>7.14.0</version>
+		</dependency>
+
+		<!-- 2 -->
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>7.14.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 3 -->
+		<!--
+		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.12.1</version>
+		</dependency>
+
+		
+		<!-- 4 -->
+		<!--
+		https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.5.3</version>
+		</dependency>
+
+		<!-- 5 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.3</version>
+		</dependency>
+
+		<!-- 6 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.2.3</version>
+		</dependency>
+
+		<!-- 7 -->
+		<!--
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>3.0.0-alpha1</version>
+		</dependency>
+		
+		<!-- 8 -->
+		<!--
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>3.0.0-alpha1</version>
+		</dependency>
+
+		<!-- 9 -->
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+
+		<!-- 10 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.13.0</version>
+		</dependency>
+
+		<!-- 11 -->
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.8.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 12 -->
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+
+	</dependencies>
+  
+ Create a new Maven Project
+Add required dependencies in po.xml (Please check links below)
+https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+https://mvnrepository.com/artifact/org.apache.poi/poi
+https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+https://mvnrepository.com/artifact/commons-io/commons-io
+https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+https://mvnrepository.com/artifact/org.testng/testng
+https://mvnrepository.com/artifact/com.aventstack/extentreports
+
+step 3: Install plugins and dependencies for Maven Project 
+=====================================================================================================
+Click on Project folder ----- Maven ---update project --- force update ---- OK
+
+step 4: Add TestNG  for Maven Project 
+=====================================================================================================
+35. Introduction to TestNG & Annotations in TestNG(pavan)
+Eclipse inside ----- help ---- eclipse market place ---- serach(TestNG for eclipse)--- install
+Right click ----- properties -------Java build path ---- add Library ----- TestNG --- next ---Finish
+
+
+step 5: Create All Files and Folders
+=====================================================================================================
+src/test/java --packages
+              pageObjects ----  Basepage.java , HomePage.java ,AccountRegistrationPage
+              testBase--------- BaseClass.java(----Main file)
+              testCases ------  TC_001_AccountRegistrationTest.java
+              utilities
+src/test/resources -- packages
+                      log4j2.xml   (<Property name="basePath">./logs</Property>) 
+                      testData---------
+                      screenshots
+                      reports
+                      Runner
+      
+ step 6: Create PageObjects(3)--- constructor(mutiple times) ---  Setup single Browser(1) ----  Create the first test cases(1)
+===============================================================================================================================
+pageobjects --- Basepage.java , HomePage.java ,AccountRegistrationPage
+public class HomePage extends BasePage   
+public class AccountRegistrationPage extends BasePage
+public HomePage(WebDriver driver) {
+		super(driver);
+}     
+    
+pageObjects ----- BasePage.java
+---------------------------------------  
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+public class BasePage {
+
+	 WebDriver driver;
+	    
+	   public BasePage(WebDriver driver)
+	     {
+		     this.driver=driver;
+		     PageFactory.initElements(driver,this);
+	     }
+	   	   
+} 
+      
+ pageObjects ----- HomePage.java
+---------------------------------------     
+  package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+public class HomePage extends BasePage {
+
+	public HomePage(WebDriver driver) {
+		super(driver);
+	}
+
+	// Elements
+	@FindBy(xpath = "//span[text()='My Account']")
+	WebElement lnkMyaccount;
+
+	@FindBy(linkText = "Register")
+	WebElement lnkRegister;
+
+	
+	// Action Methods
+	public void clickMyAccount() {
+		lnkMyaccount.click();
+	}
+
+	public void clickRegister() {
+		lnkRegister.click();
+	}
+	
+
+}
+  
+ pageObjects ----- AccountRegistrationPage.java
+--------------------------------------------------
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class AccountRegistrationPage extends BasePage {
+
+	public AccountRegistrationPage(WebDriver driver) {
+		super(driver);
+	}
+
+	// Elements
+		@FindBy(name = "firstname")
+		WebElement txtFirstname;
+
+		@FindBy(name = "lastname")
+		WebElement txtLasttname;
+
+		@FindBy(name = "email")
+		WebElement txtEmail;
+
+		@FindBy(name = "telephone")
+		WebElement txtTelephone;
+
+		@FindBy(name = "password")
+		WebElement txtPassword;
+
+		@FindBy(name = "confirm")
+		WebElement txtConfirmPassword;
+		
+		 //4) Radio btns or Gender
+		@FindBy(xpath = "//label[normalize-space()='Yes']")
+		WebElement radioYesbtn;
+		
+		@FindBy(xpath = "//input[@value='0']")
+		WebElement radioNobtn;
+		
+		//@FindBy(linkText = "Register")
+		//WebElement lnkRegister;
+		
+
+
+		@FindBy(name = "agree")
+		WebElement chkdPolicy;
+
+		@FindBy(xpath = "//input[@value='Continue']")
+		WebElement btnContinue;
+
+		@FindBy(xpath = "//h1[normalize-space()='Your Account Has Been Created!']")
+		WebElement msgConfirmation;
+
+		public void setFirstName(String fname) {
+			txtFirstname.sendKeys(fname);
+
+		}
+
+		public void setLastName(String lname) {
+			txtLasttname.sendKeys(lname);
+
+		}
+
+		public void setEmail(String email) {
+			txtEmail.sendKeys(email);
+
+		}
+
+		public void setTelephone(String tel) {
+			txtTelephone.sendKeys(tel);
+
+		}
+
+		public void setPassword(String pwd) {
+			txtPassword.sendKeys(pwd);
+
+		}
+
+		public void setConfirmPassword(String pwd) {
+			txtConfirmPassword.sendKeys(pwd);
+
+		}
+		
+		//4.Select Radiobtns method
+		public void clickRadiobtn() {
+			radioYesbtn.click();
+			System.out.println(radioYesbtn.isSelected());
+		}
+
+		public void setPrivacyPolicy() {
+			chkdPolicy.click();
+
+		}
+
+		public void clickContinue() {
+			//sol1 
+			btnContinue.click();
+			
+			//sol2 
+			//btnContinue.submit();
+			
+			//sol3
+			//Actions act=new Actions(driver);
+			//act.moveToElement(btnContinue).click().perform();
+						
+			//sol4
+			//JavascriptExecutor js=(JavascriptExecutor)driver;
+			//js.executeScript("arguments[0].click();", btnContinue);
+			
+			//Sol 5
+			//btnContinue.sendKeys(Keys.RETURN);
+			
+			//Sol6  
+			//WebDriverWait mywait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			//mywait.until(ExpectedConditions.elementToBeClickable(btnContinue)).click();
+			
+		}
+
+		public String getConfirmationMsg() {
+			try {
+				return (msgConfirmation.getText());
+			} catch (Exception e) {
+				return (e.getMessage());
+
+			}
+
+		}
+}
+      
+ 
+ testBase package  ----- BaseClass.java(Setup browser only single browser )
+----------------------------------------------------------------------------
+ package testBase;
+
+
+import java.time.Duration;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+public class BaseClass {
+
+	public static WebDriver driver;
+	
+
+
+	@BeforeClass
+	public void setup()
+	{
+		
+		WebDriverManager.chromedriver().setup(); // Not required selenium 4.6.0 later versions
+		driver=new ChromeDriver();
+	
+	
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		driver.get("https://tutorialsninja.com/demo/");
+		driver.manage().window().maximize();
+	}
+	
+	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+	}
+	
+	//Data generator random using in TC_001_AccountRegistrationTest
+	public String randomeString() {
+		String generatedString = RandomStringUtils.randomAlphabetic(5);
+		return (generatedString);
+	}
+
+	public String randomeNumber() {
+		String generatedString2 = RandomStringUtils.randomNumeric(10);
+		return (generatedString2);
+	}
+	
+	public String randomAlphaNumeric() {
+		String st = RandomStringUtils.randomAlphabetic(4);
+		String num = RandomStringUtils.randomNumeric(3);
+		
+		return (st+"@"+num);
+	}
+	
+}
+      
+testcases package  ----- BaseClass.java( Create the First test case)
+----------------------------------------------------------------------
+ package testCases;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import pageObjects.AccountRegistrationPage;
+import pageObjects.HomePage;
+import testBase.BaseClass;
+
+public class TC_001_AccountRegistrationTest extends BaseClass {
+	
+	@Test
+	public void test_account_Registration() throws InterruptedException
+	{
+		
+		
+		try
+		{
+		//Access using new object for Homepage
+		HomePage hp=new HomePage(driver);
+		hp.clickMyAccount();
+		hp.clickRegister();
+		
+		//Access using new object for AccountRegistrationPage
+		AccountRegistrationPage regpage=new AccountRegistrationPage(driver);
+		
+		regpage.setFirstName(randomeString().toUpperCase());
+		
+		regpage.setLastName(randomeString().toUpperCase());
+		
+		regpage.setEmail(randomeString()+"@gmail.com");// randomly generated the email
+		
+		regpage.setTelephone(randomeNumber());
+		
+		String password=randomAlphaNumeric();
+		regpage.setPassword(password);
+		regpage.setConfirmPassword(password);
+		
+		
+		regpage.setPrivacyPolicy();
+		
+		regpage.clickRadiobtn();
+		
+		regpage.clickContinue();
+		
+		
+		String confmsg=regpage.getConfirmationMsg();
+		
+		
+		Assert.assertEquals(confmsg, "Your Account Has Been Created!","Test failed");
+		}
+		catch(Exception e)
+		{
+			Assert.fail();
+		}
+		
+	}
+
+}
+
+
+Go to TC_001_AccountRegistrationTest.java ---- Run as ---Test NG Test --- you will see output(Direct execute fie)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+ 
+ 
+ 
+ step 7 : Adding the log file or log4j2 API or libray
+=============================================================================================================================== 
+ log4j-core
+ log4j-api
+ 
+ 
+        <!-- 7 -->
+		<!--
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>3.0.0-alpha1</version>
+		</dependency>
+		
+		<!-- 8 -->
+		<!--
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>3.0.0-alpha1</version>
+		</dependency>
+ 
+ 
+ src/test/resources ---- logs folder --- create file log4j2.xml file---Logger
+ -------------------------------------------------------------------------------
+ <?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN"> 
+
+<Properties>
+		  <Property name="basePath">./logs</Property>
+	</Properties>
+
+
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    
+      <RollingFile name="File" fileName="${basePath}/automation.log" filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log">
+     <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <SizeBasedTriggeringPolicy size="50000" />
+   </RollingFile>
+    
+    
+  </Appenders>
+  
+  <Loggers>
+    <Root level="Info"><!-- Here you can use multiple log levels All < Trace < Debug < Info < Warn < Error < Fatal < Off -->
+      <AppenderRef ref="File"/>  <!-- <AppenderRef ref="Console"/> -->
+    </Root>
+  </Loggers>
+  
+</Configuration>
+
+
+src/test/java ----- testBase package ---- BaseClass.java
+----------------------------------------------------------
+
+public Logger logger; // for logging
+logger=LogManager.getLogger(this.getClass());  //logging
+
+
+package testBase;
+
+
+import java.time.Duration;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+
+public class BaseClass {
+
+	public static WebDriver driver;
+	public Logger logger; // for logging
+
+
+	@BeforeClass
+	public void setup()
+	{
+		logger=LogManager.getLogger(this.getClass());  //logging
+		
+		WebDriverManager.chromedriver().setup(); // Not required selenium 4.6.0 later versions
+		driver=new ChromeDriver();
+	
+	
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		driver.get("https://tutorialsninja.com/demo/");
+		driver.manage().window().maximize();
+	}
+	
+	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+	}
+	
+	//Data generator random using in TC_001_AccountRegistrationTest
+	public String randomeString() {
+		String generatedString = RandomStringUtils.randomAlphabetic(5);
+		return (generatedString);
+	}
+
+	public String randomeNumber() {
+		String generatedString2 = RandomStringUtils.randomNumeric(10);
+		return (generatedString2);
+	}
+	
+	public String randomAlphaNumeric() {
+		String st = RandomStringUtils.randomAlphabetic(4);
+		String num = RandomStringUtils.randomNumeric(3);
+		
+		return (st+"@"+num);
+	}
+	
+	
+	
+}
+
+
+src/test/java ----testCases ---- TC_001_AccountRegistrationTest.java
+------------------------------------------------------------------------
+package testCases;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import pageObjects.AccountRegistrationPage;
+import pageObjects.HomePage;
+import testBase.BaseClass;
+
+
+public class TC_001_AccountRegistrationTest extends BaseClass {
+	
+	@Test
+	public void test_account_Registration() throws InterruptedException
+	{
+		logger.debug("application logs......");
+		logger.info("***  Starting TC_001_AccountRegistrationTest ***");
+		
+		try
+		{
+		HomePage hp=new HomePage(driver);
+		hp.clickMyAccount();
+		logger.info("Clicked on My account link");
+		
+		
+		hp.clickRegister();
+		logger.info("Clicked on register link");
+		
+		
+		AccountRegistrationPage regpage=new AccountRegistrationPage(driver);
+		logger.info("Providing customer data");
+		
+		regpage.setFirstName(randomeString().toUpperCase());
+		
+		regpage.setLastName(randomeString().toUpperCase());
+		
+		regpage.setEmail(randomeString()+"@gmail.com");// randomly generated the email
+		
+		regpage.setTelephone(randomeNumber());
+		
+		String password=randomAlphaNumeric();
+		regpage.setPassword(password);
+		regpage.setConfirmPassword(password);
+		
+		regpage.setPrivacyPolicy();
+		
+		regpage.clickRadiobtn();
+		
+		regpage.clickContinue();
+		logger.info("Clicked on continue");
+		
+		String confmsg=regpage.getConfirmationMsg();
+		
+		logger.info("Validating expected message");
+		Assert.assertEquals(confmsg, "Your Account Has Been Created!","Test failed");
+		}
+		catch(Exception e)
+		{
+			logger.error("test failed");
+			Assert.fail();
+		}
+		logger.info("***  Finished TC_001_AccountRegistrationTest ***");	
+	}
+
+}
+
+Go to TC_001_AccountRegistrationTest.java ---- Run as ---Test NG Test --- you will see output(Direct execute fie)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+ step 8 : Chrome options if you need use otherwise leave it.
+=============================================================================================================================== 
+ChromeOptions options=new ChromeOptions();
+options.setExperimentalOption("excludeSwitches",new String[] {"enable-automation"});
+WebDriverManager.chromedriver().setup();
+driver=new ChromeDriver(options);
+		
+		
+testBase package ---- BaseClass.java
+---------------------------------------------------		
+package testBase;
+
+
+import java.time.Duration;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+
+
+public class BaseClass {
+
+	public static WebDriver driver;
+	public Logger logger; // for logging
+
+
+	@BeforeClass
+	public void setup()
+	{
+		logger=LogManager.getLogger(this.getClass());  //logging
+		
+		
+		ChromeOptions options=new ChromeOptions();
+		options.setExperimentalOption("excludeSwitches",new String[] {"enable-automation"});
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver(options);
+	
+		
+		/*WebDriverManager.chromedriver().setup(); // Not required selenium 4.6.0 later versions
+		driver=new ChromeDriver();*/
+	
+	
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		driver.get("https://tutorialsninja.com/demo/");
+		driver.manage().window().maximize();
+	}
+	
+	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+	}
+	
+	//Data generator random using in TC_001_AccountRegistrationTest
+	public String randomeString() {
+		String generatedString = RandomStringUtils.randomAlphabetic(5);
+		return (generatedString);
+	}
+
+	public String randomeNumber() {
+		String generatedString2 = RandomStringUtils.randomNumeric(10);
+		return (generatedString2);
+	}
+	
+	public String randomAlphaNumeric() {
+		String st = RandomStringUtils.randomAlphabetic(4);
+		String num = RandomStringUtils.randomNumeric(3);
+		
+		return (st+"@"+num);
+	}
+
+}
+
+
+step 9 :Create testng.xml file to Run Test Cases and parameterize browser name to BaseClass →setup() method.
+============================================================================================================
+Select the testcases package--inside file ----- TestNG ---- convert to TestNG ---- Finish
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="testCases.TC_001_AccountRegistrationTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+testng.xml file ------ Run----- TestNG suite.
+
+
+
+ parameterize browser name to BaseClass →setup() method and testng.xml file using parameters
+ ---------------------------------------------------------
+ <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+  
+  <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+  
+    <classes>
+      <class name="testCases.TC_001_AccountRegistrationTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+
+ parameterize recived to BaseClass inside setup() method
+ ------------------------------------------------------
+ @Parameters("browser")   // getting browser parameter from testng.xml
+ 
+ //launch right browser based on parameter
+		if (browse.equals("chrome")) 
+		   {
+			driver = new ChromeDriver();
+		   } 
+		else if (browse.equals("edge"))
+		   {
+			driver = new EdgeDriver();
+		   } 
+		else 
+		   {
+			driver = new ChromeDriver();
+		   }
+	
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		driver.get("https://tutorialsninja.com/demo/");
+		driver.manage().window().maximize();
+		
+		
+testBase package ---- BaseClass.java
+---------------------------------------------------
+ package testBase;
+
+
+import java.time.Duration;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.Parameters;
+
+
+
+public class BaseClass {
+
+	public static WebDriver driver;
+	public Logger logger; // for logging
+
+
+	@BeforeClass
+	@Parameters("browser")   // getting browser parameter from testng.xml
+	public void setup(String browse)
+	{
+		logger=LogManager.getLogger(this.getClass());  //logging
+		
+		
+		/*ChromeOptions options=new ChromeOptions();
+		options.setExperimentalOption("excludeSwitches",new String[] {"enable-automation"});
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver(options);*/
+		
+		/*WebDriverManager.chromedriver().setup(); // Not required selenium 4.6.0 later versions
+		  driver=new ChromeDriver();*/
+		
+		//launch right browser based on parameter
+		if (browse.equals("chrome")) 
+		   {
+			driver = new ChromeDriver();
+		   } 
+		else if (browse.equals("edge"))
+		   {
+			driver = new EdgeDriver();
+		   } 
+		else 
+		   {
+			driver = new ChromeDriver();
+		   }
+	
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		driver.get("https://tutorialsninja.com/demo/");
+		driver.manage().window().maximize();
+	}
+	
+	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+	}
+	
+	//Data generator random using in TC_001_AccountRegistrationTest
+	public String randomeString() {
+		String generatedString = RandomStringUtils.randomAlphabetic(5);
+		return (generatedString);
+	}
+
+	public String randomeNumber() {
+		String generatedString2 = RandomStringUtils.randomNumeric(10);
+		return (generatedString2);
+	}
+	
+	public String randomAlphaNumeric() {
+		String st = RandomStringUtils.randomAlphabetic(4);
+		String num = RandomStringUtils.randomNumeric(3);
+		
+		return (st+"@"+num);
+	}
+	
+	
+	
+}
+ 
+ 
+ Run and Check to working to chrome,edge browsers using to testng.xml file 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+ Maintain separate xml to run tests multiple browsers parallelly
+ ===========================================================================================
+ Create the new file ---- name it as "crossbrowserTesting.xml" ---- Add text below
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite"  parallel="tests">
+  <test thread-count="5" name="ChromeTest">
+	  
+	   <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	   
+    <classes>
+      <class name="testCases.TC_001_AccountRegistrationTest"/>
+    </classes>
+  </test> <!-- Test -->
+  
+  <test thread-count="5" name="EdgeTest">
+	  
+	   <parameter name="browser" value="edge" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	   
+    <classes>
+      <class name="testCases.TC_001_AccountRegistrationTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+But not working ---parallel execute.
+
+
+
+step 10 :Add config.properties + ResourceBundle
+============================================================================================================
+Add config.properties file under src/test/resoures.
+---------------------------------------------------------------------------------
+appURL=https://tutorialsninja.com/demo/
+email=pradeepkumar@gmail.com
+password=pradeep@123
+
+
+Update BaseClass →setup() method, add script to load config.properties file.
+-------------------------------------------------------------------------------
+import java.util.ResourceBundle;
+
+public ResourceBundle rb;// to read config.properties
+rb = ResourceBundle.getBundle("config");// Load config.properties
+driver.get(rb.getString("appURL")); // get url from config.properties file
+
+testBase package ----- BaseClass.java
+---------------------------------------
+package testBase;
+
+
+import java.time.Duration;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.Parameters;
+
+
+import java.util.ResourceBundle;
+
+
+public class BaseClass {
+
+	public static WebDriver driver;
+	public Logger logger; // for logging
+	public ResourceBundle rb;// to read config.properties
+
+	@BeforeClass
+	@Parameters("browser")   // getting browser parameter from testng.xml
+	public void setup(String browse)
+	{
+		logger=LogManager.getLogger(this.getClass());  //logging
+		
+		rb = ResourceBundle.getBundle("config");// Load config.properties file name given
+		
+		
+		/*ChromeOptions options=new ChromeOptions();
+		options.setExperimentalOption("excludeSwitches",new String[] {"enable-automation"});
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver(options);*/
+		
+		/*WebDriverManager.chromedriver().setup(); // Not required selenium 4.6.0 later versions
+		  driver=new ChromeDriver();*/
+		
+		//launch right browser based on parameter
+		if (browse.equals("chrome")) 
+		   {
+			driver = new ChromeDriver();
+		   } 
+		else if (browse.equals("edge"))
+		   {
+			driver = new EdgeDriver();
+		   } 
+		else 
+		   {
+			driver = new ChromeDriver();
+		   }
+	
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		//driver.get("https://tutorialsninja.com/demo/");
+		driver.get(rb.getString("appURL")); // get url from config.properties file
+		driver.manage().window().maximize();
+	}
+	
+	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+	}
+	
+	//Data generator random using in TC_001_AccountRegistrationTest
+	public String randomeString() {
+		String generatedString = RandomStringUtils.randomAlphabetic(5);
+		return (generatedString);
+	}
+
+	public String randomeNumber() {
+		String generatedString2 = RandomStringUtils.randomNumeric(10);
+		return (generatedString2);
+	}
+	
+	public String randomAlphaNumeric() {
+		String st = RandomStringUtils.randomAlphabetic(4);
+		String num = RandomStringUtils.randomNumeric(3);
+		
+		return (st+"@"+num);
+	}
+	
+	
+	
+}
+
+Replace hard coded values in Test Cases like url, username, password etc...
+--------------------------------------------------------------------------------
+
+
+step 11 :Extent Report file adding to ----Utilities Packages
+============================================================================================================
+Create ExtentReportUtility utility class under utilities package.
+
+ExtentReportManager.java
+-----------------------------
+package utilities;
+
+import java.io.IOException;
+//import java.net.URL;
+
+
+//Extent report 5.x...//version
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+import testBase.BaseClass;
+public class ExtentReportManager implements ITestListener {
+	public ExtentSparkReporter sparkReporter;
+	public ExtentReports extent;
+	public ExtentTest test;
+
+	String repName;
+
+	public void onStart(ITestContext testContext) {
+		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());// time stamp
+		repName = "Test-Report-" + timeStamp + ".html";
+
+		sparkReporter = new ExtentSparkReporter(".\\reports\\" + repName);// specify location of the report
+
+		sparkReporter.config().setDocumentTitle("opencart Automation Report"); // Title of report
+		sparkReporter.config().setReportName("opencart Functional Testing"); // name of the report
+		sparkReporter.config().setTheme(Theme.DARK);
+
+		extent = new ExtentReports();
+		extent.attachReporter(sparkReporter);
+		extent.setSystemInfo("Application", "opencart");
+		extent.setSystemInfo("Module", "Admin");
+		extent.setSystemInfo("Sub Module", "Customers");
+		extent.setSystemInfo("Operating System", System.getProperty("os.name"));
+		extent.setSystemInfo("User Name", System.getProperty("user.name"));
+		extent.setSystemInfo("Environemnt", "QA");
+	}
+
+	public void onTestSuccess(ITestResult result) {
+		test = extent.createTest(result.getName());
+		test.log(Status.PASS, "Test Passed");
+	}
+
+	public void onTestFailure(ITestResult result) {
+		test = extent.createTest(result.getName());
+		test.log(Status.FAIL, "Test Failed");
+		test.log(Status.FAIL, result.getThrowable().getMessage());
+
+		try {
+			String imgPath = new BaseClass().captureScreen(result.getName());
+			test.addScreenCaptureFromPath(imgPath);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public void onTestSkipped(ITestResult result) {
+		test = extent.createTest(result.getName());
+		test.log(Status.SKIP, "Test Skipped");
+		test.log(Status.SKIP, result.getThrowable().getMessage());
+	}
+
+	public void onFinish(ITestContext testContext) {
+		extent.flush();
+
+		/*
+		 * try { URL url = new
+		 * URL("file:///"+System.getProperty("user.dir")+"\\reports\\"+repName);
+		 * 
+		 * // Create the email message 
+		 * ImageHtmlEmail email = new ImageHtmlEmail();
+		 * email.setDataSourceResolver(new DataSourceUrlResolver(url));
+		 * email.setHostName("smtp.googlemail.com"); 
+		 * email.setSmtpPort(465);
+		 * email.setAuthenticator(new DefaultAuthenticator("pavanoltraining@gmail.com","password")); 
+		 * email.setSSLOnConnect(true);
+		 * email.setFrom("pavanoltraining@gmail.com"); //Sender
+		 * email.setSubject("Test Results");
+		 * email.setMsg("Please find Attached Report....");
+		 * email.addTo("pavankumar.busyqa@gmail.com"); //Receiver 
+		 * email.attach(url, "extent report", "please check report..."); 
+		 * email.send(); // send the email 
+		 * }
+		 * catch(Exception e) { e.printStackTrace(); }
+		 */
+	}
+
+}
+
+testBase package ---- BaseClass
+--------------------------------
+public String captureScreen(String tname) throws IOException 
+	{
+		String timeStamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+				
+		TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+		File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
+		String destination = System.getProperty("user.dir") + "\\screenshots\\" + tname + "_" + timeStamp + ".png";
+
+		try 
+		{
+			FileUtils.copyFile(source, new File(destination));
+		} 
+		catch (Exception e) 
+		{
+			e.getMessage();
+		}
+		return destination;
+
+	}
+	
+Add two reports,screenshots
+
+
+ <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+</listeners>	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+package testBase;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;  // logging
+
+
+public class BaseClass {
+
+	public static WebDriver driver;
+	
+	public Logger logger; // for logging
+	
+	public ResourceBundle rb;// to read config.properties
+
+	@BeforeClass
+	@Parameters("browser")   // getting browser parameter from testng.xml
+	public void setup(String browse)
+	{
+		logger=LogManager.getLogger(this.getClass());  //logging
+		
+		rb = ResourceBundle.getBundle("config");// Load config.properties
+		
+		/*ChromeOptions options=new ChromeOptions();
+		options.setExperimentalOption("excludeSwitches",new String[] {"enable-automation"});
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver(options);*/
+		
+		/*WebDriverManager.chromedriver().setup(); // Not required selenium 4.6.0 later versions
+		  driver=new ChromeDriver();*/
+		
+		//launch right browser based on parameter
+		if (browse.equals("chrome")) 
+		   {
+			driver = new ChromeDriver();
+		   } 
+		else if (browse.equals("edge"))
+		   {
+			driver = new EdgeDriver();
+		   } 
+		else 
+		   {
+			driver = new ChromeDriver();
+		   }
+	
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		//driver.get("https://tutorialsninja.com/demo/");
+		driver.get(rb.getString("appURL")); // get url from config.properties file
+		driver.manage().window().maximize();
+	}
+	
+	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+	}
+	
+	public String randomeString() {
+		String generatedString = RandomStringUtils.randomAlphabetic(5);
+		return (generatedString);
+	}
+
+	public String randomeNumber() {
+		String generatedString2 = RandomStringUtils.randomNumeric(10);
+		return (generatedString2);
+	}
+	
+	public String randomAlphaNumeric() {
+		String st = RandomStringUtils.randomAlphabetic(4);
+		String num = RandomStringUtils.randomNumeric(3);
+		
+		return (st+"@"+num);
+	}
+	
+	public String captureScreen(String tname) throws IOException 
+	{
+		String timeStamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+				
+		TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+		File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
+		String destination = System.getProperty("user.dir") + "\\screenshots\\" + tname + "_" + timeStamp + ".png";
+
+		try 
+		{
+			FileUtils.copyFile(source, new File(destination));
+		} 
+		catch (Exception e) 
+		{
+			e.getMessage();
+		}
+		return destination;
+
+	}
+	
+	
+}
+
+
+testng.xml add listeners
+-------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	
+	 <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+	</listeners>
+	
+	
+  <test thread-count="5" name="ChromeTest">
+	  
+	   <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	   
+    <classes>
+      <class name="testCases.TC_001_AccountRegistrationTest"/>
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+
+
+Add captureScreen() method in BaseClass
+Add ExtentReportUtility (Listener class) entry in testng.xml file.
+Make sure WebDriver is static in BaseClass, we refer same driver instance in ExtentReportUtility.
+
+
+failure initally using for TC_001_AccountRegistrationTest.java
+----------------------------------------------------------------------
+//regpage.setEmail(randomeString()+"@gmail.com");// randomly generated the email
+
+See reports and screenshots folder --- refresh and see
+
+
+
+step 12: Login Test using pre-requirement
+============================================================================================================
+src/test/resources ----- config.properties
+-----------------------------------------------
+email=pradeepkumar@gmail.com
+password=pradeep@123
+
+
+1.Create and update page object classes.
+------------------------------------------------------------
+HomePage – update by adding login link element
+
+@FindBy(linkText = "Login")   // Login page Locator added 
+	WebElement linkLogin;
+
+public void clickLogin()    // Login page method added 
+	{
+		linkLogin.click();
+	}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+public class HomePage extends BasePage {
+
+	public HomePage(WebDriver driver) {
+		super(driver);
+	}
+
+	// Elements
+	@FindBy(xpath = "//span[text()='My Account']")
+	WebElement lnkMyaccount;
+
+	@FindBy(linkText = "Register")
+	WebElement lnkRegister;
+
+	@FindBy(linkText = "Login")   // Login page Locator added 
+	WebElement linkLogin;
+	
+	// Action Methods
+	public void clickMyAccount() {
+		lnkMyaccount.click();
+	}
+
+	public void clickRegister() {
+		lnkRegister.click();
+	}
+	
+	public void clickLogin()    // Login page method added 
+	{
+		linkLogin.click();
+	}
+	
+}
+
+
+LoginPage, MyAccountPage – new classes
+----------------------------------------------------
+PageObjects ---- LoginPage.java
+--------------------------------
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+public class LoginPage extends BasePage {
+
+	public LoginPage(WebDriver driver) {
+		super(driver);
+	}
+
+	@FindBy(xpath = "//input[@id='input-email']")
+	WebElement txtEmailAddress;
+
+	@FindBy(xpath = "//input[@id='input-password']")
+	WebElement txtPassword;
+
+	@FindBy(xpath = "//input[@value='Login']")
+	WebElement btnLogin;
+
+
+	public void setEmail(String email) {
+		txtEmailAddress.sendKeys(email);
+	}
+
+	public void setPassword(String pwd) {
+		txtPassword.sendKeys(pwd);
+	}
+
+	public void clickLogin() {
+		btnLogin.click();
+	}
+
+	
+
+}
+
+pageObjects ---- MyAccountPage.java
+-----------------------------------
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+
+public class MyAccountPage extends BasePage {
+
+	public MyAccountPage(WebDriver driver) {
+		super(driver);
+	}
+
+	@FindBy(xpath = "//h2[text()='My Account']") // MyAccount Page heading
+	WebElement msgHeading;
+	
+	@FindBy(xpath = "//div[@class='list-group']//a[text()='Logout']")  // add logout link element
+	WebElement lnkLogout;  
+
+	public boolean isMyAccountPageExists()   // MyAccount Page heading display status
+	{
+		try {
+			return (msgHeading.isDisplayed());
+		} catch (Exception e) {
+			return (false);
+		}
+	}
+	
+
+}
+
+2: Create LoginTest
+testCases package ----- TC_002_LoginTest.java
+----------------------------------------------
+package testCases;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
+import pageObjects.MyAccountPage;
+import testBase.BaseClass;
+
+
+public class TC_002_LoginTest extends BaseClass
+{
+	@Test
+	public void test_Login()
+	{
+		logger.info(" ***Starting TC_002_LoginTest***");
+		
+		try
+		{				
+			HomePage hp=new HomePage(driver);
+			hp.clickMyAccount();
+			logger.info("Clicked on My Account");
+			
+			hp.clickLogin();
+			logger.info("Clicked on Login Link");
+			
+			
+			LoginPage lp=new LoginPage(driver);
+			logger.info("Providing login details");
+			lp.setEmail(rb.getString("email")); // valid email, get it from config.properties file put form BaseClass.java
+			
+			lp.setPassword(rb.getString("password")); // valid password, get it from config.properties file put form BaseClass.java
+			
+			lp.clickLogin();
+			logger.info("Clicked on Login button");
+			
+			
+			MyAccountPage macc=new MyAccountPage(driver);
+			boolean targetpage=macc.isMyAccountPageExists();
+						
+			Assert.assertEquals(targetpage, true,"Invalid login data");
+			
+		}	
+		catch(Exception e)
+		{
+			Assert.fail();
+		}
+		logger.info("***Finished TC_002_LoginTest***");
+		
+	}
+	
+	
+}
+
+3: Add entry testng.xml
+-------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	
+	 <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+	</listeners>
+	
+	
+  <test thread-count="5" name="ChromeTest">
+	  
+	   <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	   
+    <classes>
+     <!--  <class name="testCases.TC_001_AccountRegistrationTest"/>-->
+      <class name="testCases.TC_002_LoginTest"/>
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+
+Run and execute
+
+step 13: Data Driven Test
+============================================================================================================
+1.Prepare test data in Excel, place the excel file inside the testData folder
+---------------------------------------------------------------------------------
+Create one folder for data ----testData foldet ---- excel file(Opencart_LoginData.xlsx)
+
+
+2.Create ExcelUtility class under utilities package
+---------------------------------------------------------------
+src/test/java ------- utilities pacakge ---inside(add ExcelUtility.java file)
+
+package utilities;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelUtility {
+
+	public FileInputStream fi;
+	public FileOutputStream fo;
+	public XSSFWorkbook workbook;
+	public XSSFSheet sheet;
+	public XSSFRow row;
+	public XSSFCell cell;
+	public CellStyle style;   
+	String path;
+	
+	public ExcelUtility(String path)
+	{
+		this.path=path;
+	}
+		
+	public int getRowCount(String sheetName) throws IOException 
+	{
+		fi=new FileInputStream(path);
+		workbook=new XSSFWorkbook(fi);
+		sheet=workbook.getSheet(sheetName);
+		int rowcount=sheet.getLastRowNum();
+		workbook.close();
+		fi.close();
+		return rowcount;		
+	}
+	
+	public int getCellCount(String sheetName,int rownum) throws IOException
+	{
+		fi=new FileInputStream(path);
+		workbook=new XSSFWorkbook(fi);
+		sheet=workbook.getSheet(sheetName);
+		row=sheet.getRow(rownum);
+		int cellcount=row.getLastCellNum();
+		workbook.close();
+		fi.close();
+		return cellcount;
+	}
+	
+	
+	public String getCellData(String sheetName,int rownum,int colnum) throws IOException
+	{
+		fi=new FileInputStream(path);
+		workbook=new XSSFWorkbook(fi);
+		sheet=workbook.getSheet(sheetName);
+		row=sheet.getRow(rownum);
+		cell=row.getCell(colnum);
+		
+		DataFormatter formatter = new DataFormatter();
+		String data;
+		try{
+		data = formatter.formatCellValue(cell); //Returns the formatted value of a cell as a String regardless of the cell type.
+		}
+		catch(Exception e)
+		{
+			data="";
+		}
+		workbook.close();
+		fi.close();
+		return data;
+	}
+	
+	public void setCellData(String sheetName,int rownum,int colnum,String data) throws IOException
+	{
+		File xlfile=new File(path);
+		if(!xlfile.exists())    // If file not exists then create new file
+		{
+		workbook=new XSSFWorkbook();
+		fo=new FileOutputStream(path);
+		workbook.write(fo);
+		}
+				
+		fi=new FileInputStream(path);
+		workbook=new XSSFWorkbook(fi);
+			
+		if(workbook.getSheetIndex(sheetName)==-1) // If sheet not exists then create new Sheet
+			workbook.createSheet(sheetName);
+		sheet=workbook.getSheet(sheetName);
+					
+		if(sheet.getRow(rownum)==null)   // If row not exists then create new Row
+				sheet.createRow(rownum);
+		row=sheet.getRow(rownum);
+		
+		cell=row.createCell(colnum);
+		cell.setCellValue(data);
+		fo=new FileOutputStream(path);
+		workbook.write(fo);		
+		workbook.close();
+		fi.close();
+		fo.close();
+	}
+	
+	
+	public void fillGreenColor(String sheetName,int rownum,int colnum) throws IOException
+	{
+		fi=new FileInputStream(path);
+		workbook=new XSSFWorkbook(fi);
+		sheet=workbook.getSheet(sheetName);
+		
+		row=sheet.getRow(rownum);
+		cell=row.getCell(colnum);
+		
+		style=workbook.createCellStyle();
+		
+		style.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+		style.setFillPattern(FillPatternType.SOLID_FOREGROUND); 
+				
+		cell.setCellStyle(style);
+		workbook.write(fo);
+		workbook.close();
+		fi.close();
+		fo.close();
+	}
+	
+	
+	public void fillRedColor(String sheetName,int rownum,int colnum) throws IOException
+	{
+		fi=new FileInputStream(path);
+		workbook=new XSSFWorkbook(fi);
+		sheet=workbook.getSheet(sheetName);
+		row=sheet.getRow(rownum);
+		cell=row.getCell(colnum);
+		
+		style=workbook.createCellStyle();
+		
+		style.setFillForegroundColor(IndexedColors.RED.getIndex());
+		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
+		
+		cell.setCellStyle(style);		
+		workbook.write(fo);
+		workbook.close();
+		fi.close();
+		fo.close();
+	}
+	
+}
+
+3.Update Page Object class MyAccountPage , add logout link element)
+-----------------------------------------------------------------------------
+public void clickLogout() {
+		lnkLogout.click();
+	}
+	
+
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+
+public class MyAccountPage extends BasePage {
+
+	public MyAccountPage(WebDriver driver) {
+		super(driver);
+	}
+
+	@FindBy(xpath = "//h2[text()='My Account']") // MyAccount Page heading
+	WebElement msgHeading;
+	
+	@FindBy(xpath = "//div[@class='list-group']//a[text()='Logout']")  // add logout link element
+	WebElement lnkLogout;  
+
+	public boolean isMyAccountPageExists()   // MyAccount Page heading display status
+	{
+		try {
+			return (msgHeading.isDisplayed());
+		} catch (Exception e) {
+			return (false);
+		}
+	}
+	
+	public void clickLogout() {
+		lnkLogout.click();
+	}
+
+}
+
+4.Create DataProviders class in utilities package to maintain data providers for data driven tests.
+-------------------------------------------------------------------------------------------------------
+src/test/java ------ utilities package --------DataProviders.java
+
+package utilities;
+
+import java.io.IOException;
+
+import org.testng.annotations.DataProvider;
+
+
+public class DataProviders {
+
+	//DataProvider 1
+	@DataProvider(name="LoginData")
+	
+	public String [][] getData() throws IOException
+	{
+		String path=".\\testData\\Opencart_LoginData.xlsx";//taking xl file from testData
+		
+		ExcelUtility xlutil=new ExcelUtility(path);//creating an object for XLUtility
+		
+		int totalrows=xlutil.getRowCount("Sheet1");	
+		int totalcols=xlutil.getCellCount("Sheet1",1);
+				
+		String logindata[][]=new String[totalrows][totalcols];//created for two dimension array which can store the data user and password
+		
+		for(int i=1;i<=totalrows;i++)  //1   //read the data from xl storing in two deminsional array
+		{		
+			for(int j=0;j<totalcols;j++)  //0    i is rows j is col
+			{
+				logindata[i-1][j]= xlutil.getCellData("Sheet1",i, j);  //1,0
+			}
+		}
+	return logindata;//returning two dimension array
+				
+	}
+	
+	//DataProvider 2
+	
+	//DataProvider 3
+	
+	//DataProvider 4
+}
+
+5.Create LoginDataDrivenTest under testCases package.
+------------------------------------------------------------------
+testCases package ------TC_003_LoginDataDrivenTest.java
+
+package testCases;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
+import pageObjects.MyAccountPage;
+import testBase.BaseClass;
+import utilities.DataProviders;
+
+public class TC_003_LoginDataDrivenTest extends BaseClass {
+
+	@Test(dataProvider = "LoginData", dataProviderClass = DataProviders.class)
+	public void test_LoginDDT(String email, String pwd, String exp) 
+	{
+		logger.info(" Starting TC_003_LoginDataDrivenTest ");
+
+		try 
+		{
+				HomePage hp = new HomePage(driver);
+				hp.clickMyAccount();
+				hp.clickLogin();
+	
+				LoginPage lp = new LoginPage(driver);
+				//lp.setEmail(rb.getString('email'));
+				//lp.setEmail(rb.getString('password'));
+				lp.setEmail(email);
+				lp.setPassword(pwd);
+				lp.clickLogin();
+	
+				MyAccountPage macc=new MyAccountPage(driver);
+				boolean targetpage = macc.isMyAccountPageExists();// this method is created MyAccountPage
+
+				if (exp.equals("Valid")) 
+				{
+					if (targetpage == true)
+					{
+						macc.clickLogout();
+						Assert.assertTrue(true);
+					} else {
+						Assert.assertTrue(false);
+					}
+				}
+	
+				if (exp.equals("Invalid"))
+				{
+					if (targetpage == true) 
+					{
+						MyAccountPage myaccpage = new MyAccountPage(driver);
+						myaccpage.clickLogout();
+						Assert.assertTrue(false);
+					} else {
+						Assert.assertTrue(true);
+					}
+				}
+
+		}
+		catch (Exception e) 
+		{
+			Assert.fail();
+		}
+
+		logger.info(" Finished TC_003_LoginDataDrivenTest");
+
+	}
+
+}
+
+6.Add an Entry in testng.xml file
+-------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	
+	 <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+	</listeners>
+	
+	
+  <test thread-count="5" name="ChromeTest">
+	  
+	   <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	   
+    <classes>
+     <!--  <class name="testCases.TC_001_AccountRegistrationTest"/>-->
+      <!-- <class name="testCases.TC_002_LoginTest"/>-->
+      <class name="testCases.TC_003_LoginDataDrivenTest"/>
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+
+
+step 14: Grouping test cases
+============================================================================================================
+Add all test cases into specific group.
+---------------------------------------------
+		Sanity 
+		        TC_002_Login ------ (groups= {"Sanity","Master"}) //Step8 groups added
+		Regression
+		        TC_001_AccountRegistration ---- (groups= {"Regression","Master"}) //Step8 groups added
+		Master
+		    TC_001_AccountRegistration
+		    TC_002_Login
+		    
+		    
+Also add BaseClass methods setup() & teardown() to all groups.
+-----------------------------------------------------------------------
+
+src/test/java ------- testNase package ------- BaseClass.java 
+             @BeforeClass(groups = { "Master", "Sanity", "Regression" }) //Step8 groups added
+             @AfterClass(groups = { "Master", "Sanity", "Regression" }) //Step8 groups added
+
+Create separate TestNG xml file(grouping.xml) to run groups and include groups which we want to execute.
+------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="OpenCartSuite">
+	
+	 <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+	</listeners>
+	
+  <test thread-count="5" name="OpenCartTest">
+	  <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+	  
+	  <groups>
+   		<run>
+		<!-- 	<include name="Master" /> -->
+			<include name="Sanity" />
+		<!--	<include name="Regression" /> -->
+		<!--	<exclude name="" /> -->
+		</run>
+	</groups>	
+	
+	
+    <classes>
+     <class name="testCases.TC_001_AccountRegistrationTest"/>
+     <class name="testCases.TC_002_LoginTest"/>
+      <!--   <class name="testCases.TC_003_LoginDataDrivenTest"/>-->
+       
+    </classes>
+  </test> <!-- OpenCartTest -->
+</suite> <!-- OpenCartSuite -->
+
+
+
+Data drvien dataDriventests.xml file---one data driven test is there but future add more in this file
+----------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="OpenCartSuite">
+	
+	 <listeners>
+		<listener class-name="utilities.ExtentReportManager" />
+	</listeners>
+	
+  <test thread-count="5" name="OpenCartTest">
+	  <parameter name="browser" value="chrome" />    <!-- passing browser parameter to BaseClass ->Setup() -->
+    <classes>
+   
+       <class name="testCases.TC_003_LoginDataDrivenTest"/>
+       
+    </classes>
+  </test> <!-- OpenCartTest -->
+</suite> <!-- OpenCartSuite -->
+
+
+step 15 : Only failed test cases see ----test-output-------testng-failed.xml
+=============================================================================
+1.Run Failed Tests.
+test-output→testng-failed.xml
+
+
+step 16 :Setup maven.apache.org
+=====================================================================================================
+Install git Local ------ git -v --------------------------- (cmd check)
+Create Github account  ------------(username and pswd)
+
+
+Open the git bash ---- local system following below commands
+
+                   1st round
+--------------------------------------------------------------
+1) git init  --- create an empty local repository 
+2) git config --global user.name "your name"
+   git config --global user.email "your email"
+3) git add -A   --- add all the files and folders to staging area
+ git add filename.txt
+ git add *.java
+ git add foldername
+git status
+4) git commit -m "commit msg"
+5)  git remote add origin "github URL"
+6) git push -u origin master
+
+
+                  2nd round
+---------------------------------------------------------------
+1) git add -A
+2) git commit -m "commit msg"
+3) git push -u origin master
+
+                 Change the reportory
+-------------------------------------------------------------------
+git remote -v 
+git remote set-url origin https://github.com/pradeepyalamasetti/Opencartselenium.git
+
+How to get code from remote reportory
+git pull   -- get files from github to workspace
+
+clone - get entire project into your workspce
+git clone "github repo url"  <folder> <br>
+Git tutorials: https://youtube.com/playlist?list=PLUDwpEzHYYLuMNNTu0EdWBeBtXdRhj4Lv
+how to delete complete reporsitory in github repository
+how to delete file in github repository
+how to add file in github repository
+
+
+
+step  17 :Setup maven.apache.org
+=====================================================================================================
+https://maven.apache.org/ ------- Downloads --------- zip file for windows ----- C:\software\apache-maven-3.9.4
+This PC ------ properties properties ---- Advance system settings --- environment variables -----
+MAVEN_HOME ----C:\software\apache-maven-3.9.4 ---- ok ------ path file ---- Edit ---- paste(%MAVEN_HOME%\bin)----ok
+	
+step  : jenkins using command prompt 
+=====================================================================================================
+1.https://www.jenkins.io/download/  ---- download(Download Jenkins 2.414.2 LTS for:) --- after
+2.create one folder ----- jars(C:\software\jars)---paste war file inside this. --- after
+3.open command prompt
+4.cd C:\software\jars
+5.java -jar jenkins.war -- Press Enter
+6.copy one time password (93d29acfa58e4ee7b54cac495e31fb2c)
+7.http://localhost:8080/
+8.install suggested plugins
+9.install some more plugins ---maven integration.html publisher ,
+10.system configured ----Tools ------ add JDK path name(JAVA_HOME) JAVA_HOME(C:\Program Files\Java\jdk-11)
+	                       ----- add MAVEN path name(MAVEN_HOME) MAVEN_HOME(C:\software\apache-maven-3.9.4)
+Apply and Save.
+
